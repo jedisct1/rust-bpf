@@ -49,8 +49,8 @@ macro_rules! bpfprog {
     ($count:expr, $($code:tt $jt:tt $jf:tt $k:tt),*) => {
         {
             let mut ops = Vec::with_capacity($count);
-            $(ops.push(Op::new($code, $jt, $jf, $k));)*
-            Prog::new(ops)
+            $(ops.push(bpf::Op::new($code, $jt, $jf, $k));)*
+            bpf::Prog::new(ops)
         }
     }
 }
