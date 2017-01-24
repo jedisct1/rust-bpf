@@ -3,6 +3,7 @@ name = "bpf"
 version = "0.1.1"
 authors = ["Frank Denis <github@pureftpd.org>"]
 description = "Attach BPF filters"
+license = "ISC"
 homepage = "https://github.com/jedisct1/rust-bpf"
 repository = "https://github.com/jedisct1/rust-bpf"
 categories = ["os::unix-apis"]
