@@ -57,12 +57,12 @@ macro_rules! bpfprog {
 
 pub fn attach_filter(fd: RawFd, prog: Prog) -> Result<(), Error> {
     match unsafe {
-        setsockopt(fd as c_int,
-                   SOL_SOCKET,
-                   SO_ATTACH_FILTER,
-                   &prog as *const _ as *const c_void,
-                   size_of_val(&prog) as socklen_t)
-    } {
+              setsockopt(fd as c_int,
+                         SOL_SOCKET,
+                         SO_ATTACH_FILTER,
+                         &prog as *const _ as *const c_void,
+                         size_of_val(&prog) as socklen_t)
+          } {
         0 => Ok(()),
         _ => Err(Error::last_os_error()),
     }
@@ -78,12 +78,12 @@ pub fn detach_filter(fd: RawFd) -> Result<(), Error> {
 pub fn lock_filter(fd: RawFd) -> Result<(), Error> {
     let one: c_int = 1;
     match unsafe {
-        setsockopt(fd as c_int,
-                   SOL_SOCKET,
-                   SO_LOCK_FILTER,
-                   &one as *const _ as *const c_void,
-                   size_of_val(&one) as socklen_t)
-    } {
+              setsockopt(fd as c_int,
+                         SOL_SOCKET,
+                         SO_LOCK_FILTER,
+                         &one as *const _ as *const c_void,
+                         size_of_val(&one) as socklen_t)
+          } {
         0 => Ok(()),
         _ => Err(Error::last_os_error()),
     }
