@@ -6,7 +6,9 @@ pub struct Prog;
 
 #[macro_export]
 macro_rules! bpfprog {
-    ($count:expr, $($code:tt $jt:tt $jf:tt $k:tt),*) => { bpf::Prog }
+    ($count:expr, $($code:tt $jt:tt $jf:tt $k:tt),*) => {
+        bpf::Prog
+    };
 }
 
 #[allow(unused_variables)]
