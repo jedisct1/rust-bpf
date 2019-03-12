@@ -1,6 +1,3 @@
-#![cfg_attr(feature = "clippy", feature(plugin))]
-#![cfg_attr(feature = "clippy", plugin(clippy))]
-
 #[cfg(target_os = "linux")]
 pub use bpf_linux::*;
 #[cfg(target_os = "linux")]
