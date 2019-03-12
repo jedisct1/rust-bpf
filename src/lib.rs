@@ -1,8 +1,6 @@
 #![cfg_attr(feature = "clippy", feature(plugin))]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
 
-extern crate libc;
-
 #[cfg(target_os = "linux")]
 pub use bpf_linux::*;
 #[cfg(target_os = "linux")]

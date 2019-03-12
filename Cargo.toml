@@ -7,6 +7,7 @@ license = "ISC"
 homepage = "https://github.com/jedisct1/rust-bpf"
 repository = "https://github.com/jedisct1/rust-bpf"
 categories = ["os::unix-apis"]
+edition = "2018"
 
 [badges]
 travis-ci = { repository = "jedisct1/rust-bpf" }
