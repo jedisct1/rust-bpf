@@ -1,6 +1,6 @@
 use libc::{c_int, c_ushort, c_void, setsockopt, socklen_t, SOL_SOCKET};
 use std::io::Error;
-use std::mem::size_of_val;
+use std::mem::{forget, size_of_val};
 use std::os::unix::io::RawFd;
 use std::ptr::null;
 
@@ -28,14 +28,30 @@ impl Op {
 #[derive(Debug)]
 pub struct Prog {
     len: c_ushort,
-    filter: *const Op,
+    filter: *mut Op,
 }
 
 impl Prog {
     pub fn new(ops: Vec<Op>) -> Prog {
+        let mut ops = ops.into_boxed_slice();
+        let len = ops.len();
+        let ptr = ops.as_mut_ptr();
+
+        forget(ops);
+
         Prog {
-            len: ops.len() as _,
-            filter: ops.as_ptr(),
+            len: len as _,
+            filter: ptr,
+        }
+    }
+}
+
+impl Drop for Prog {
+    fn drop(&mut self) {
+        unsafe {
+            let len = self.len as usize;
+            let ptr = self.filter;
+            Vec::from_raw_parts(ptr, len, len);
         }
     }
 }
