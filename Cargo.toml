@@ -1,8 +1,9 @@
 [package]
+keywords = ["bpf", "packet-filter", "socket", "linux", "network"]
 name = "bpf"
 version = "0.1.4"
 authors = ["Frank Denis <github@pureftpd.org>"]
-description = "Attach BPF filters"
+description = "Attach, lock, and detach classic Berkeley Packet Filter (BPF) programs on Linux sockets"
 license = "ISC"
 homepage = "https://github.com/jedisct1/rust-bpf"
 repository = "https://github.com/jedisct1/rust-bpf"
